@@ -32,7 +32,6 @@
   from {
     transform: rotate(0deg);
   }
-
   to {
     transform: rotate(360deg);
   }
@@ -41,7 +40,7 @@
 body {
   margin: 0;
   font-family: "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
+      "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -169,22 +168,22 @@ body {
 
 @media (max-width: 768px) {
   .characters {
-    padding: 0 20px;
+      padding: 0 20px;
   }
 
   .container-characters {
-    display: table-cell;
+      display: table-cell;
   }
 
   .character-container {
-    width: auto;
+      width: auto;
   }
 
   .character-container {
-    margin: 10px 0;
+      margin: 10px 0;
   }
 
   .character-container img {
-    width: 150px;
+      width: 150px;
   }
 }
