@@ -1,12 +1,22 @@
+import React, { useContext, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router';
 import useFetch from '../hooks/useFetch';
+import { CharactersContext } from '../App';
 
 export default function Blog() {
+    const { setCharactersList } = useContext(CharactersContext);
     let [searchParams, setSearchParams] = useSearchParams();
     const { data, loading, error } = useFetch('https://rickandmortyapi.com/api/character');
+
+    useEffect(() => {
+        if (data) {
+            setCharactersList(data.results);
+        }
+    }, [data, setCharactersList]);
+
     if (loading) return <p>Buscando el Morty adecuado...</p>;
     if (error) return <p>La pistola de portales no funciona...: {error}</p>;
-    console.log(data?.results);
+    //console.log(data?.results);
     const handleChange = (e) => {
         setSearchParams({ filter: e.target.value });
     };

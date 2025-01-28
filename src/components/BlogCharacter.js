@@ -1,19 +1,22 @@
-import { useParams } from "react-router";
-import useFetch from "../hooks/useFetch";
+import { useParams, Link } from "react-router";
+import { useContext } from "react";
+import { CharactersContext } from "../App";
 
 export default function BlogCharacter() {
     const params = useParams();
-    const url = `https://rickandmortyapi.com/api/character/${params.id}`;
-    const { data, loading, error } = useFetch(url);
-    if (loading) return <p>Buscando en el multiverso...</p>;
-    if (error) return <p>Este personaje ya no existe...: {error}</p>;
+    const { charactersList } = useContext(CharactersContext);
+    if (charactersList == null) {
+        return <p>Buscando en el multiverso...</p>;
+    }
+    const character = charactersList.find((character) => character.id == params.id);;
 
     return (
         <div className="card">
-            <img src={data.image} className="card-img-top" alt="..." />
+            <img src={character.image} className="card-img-top" alt="..." />
             <div className="card-body">
-                <h5 className="card-title">{data.name}</h5>
-                <p className="card-text">{data.species}</p>
+                <h5 className="card-title">{character.name}</h5>
+                <p className="card-text">{character.species}</p>
+                <Link to="/blog" className="btn btn-primary">Volver</Link>
             </div>
         </div>
     )
