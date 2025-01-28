@@ -8,7 +8,7 @@ export default function Blog() {
     if (error) return <p>La pistola de portales no funciona...: {error}</p>;
     console.log(data?.results);
     const handleChange = (e) => {
-        setSearchParams({ filter: e.target.value, page: 1 });
+        setSearchParams({ filter: e.target.value });
     };
     return (
         <>
@@ -23,7 +23,8 @@ export default function Blog() {
             />
             <ul className='list-group'>
                 {
-                    data?.results.map(item => {
+
+                    data?.results.filter(item => item.name.toLowerCase().includes(searchParams.get('filter') || '')).map(item => {
                         return (
                             <Link
                                 to={`/blog/${item.id}`}
